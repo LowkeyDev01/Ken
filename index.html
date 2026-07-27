@@ -16,16 +16,37 @@
 
 <body class="bg-white text-neutral-900 font-sans antialiased">
 
-  <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50">
-    <div class="bg-white/75 backdrop-blur-md border border-black/10 rounded-full px-4 py-2 flex items-center gap-5 shadow-sm">
-      <img src="your-image.jpg" alt="Ken Profile" class="w-9 h-9 rounded-full object-cover border border-black/10">
-      
-      <a href="#home" class="text-sm font-medium text-black">Home</a>
-      <a href="#about" class="text-sm text-gray-500 hover:text-black transition">About</a>
-      <a href="#projects" class="text-sm text-gray-500 hover:text-black transition">Projects</a>
-      <a href="#contact" class="text-sm text-gray-500 hover:text-black transition">Contact</a>
-    </div>
-  </nav>
+<nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50">
+  <div class="bg-white/75 backdrop-blur-md border border-black/10 rounded-full px-5 py-2.5 flex items-center gap-6 shadow-sm">
+    <img src="your-image.jpg" alt="Ken Profile" class="w-8 h-8 rounded-full object-cover border border-black/10">
+
+    <div class="h-4 w-[1px] bg-black/10"></div> <a href="#home" class="group relative text-gray-700 hover:text-black transition" aria-label="Home">
+      <i data-lucide="home" class="w-5 h-5"></i>
+      <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] bg-black text-white px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">Home</span>
+    </a>
+
+    <a href="#about" class="group relative text-gray-400 hover:text-black transition" aria-label="About">
+      <i data-lucide="user" class="w-5 h-5"></i>
+      <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] bg-black text-white px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">About</span>
+    </a>
+
+    <a href="#projects" class="group relative text-gray-400 hover:text-black transition" aria-label="Projects">
+      <i data-lucide="folder-git-2" class="w-5 h-5"></i>
+      <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] bg-black text-white px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">Projects</span>
+    </a>
+
+    <a href="#contact" class="group relative text-gray-400 hover:text-black transition" aria-label="Contact">
+      <i data-lucide="mail" class="w-5 h-5"></i>
+      <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] bg-black text-white px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none">Contact</span>
+    </a>
+  </div>
+</nav>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+  
 
   <section id="home" class="min-h-screen relative flex items-center overflow-hidden pt-36 md:pt-0">
     <div class="max-w-7xl mx-auto px-6 w-full">
