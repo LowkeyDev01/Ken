@@ -172,7 +172,7 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       
-      <!-- Project 1: SOBOHBOO -->
+      <!-- Project 1: SOBOHBOO (Live) -->
       <div class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col">
         <div class="relative overflow-hidden aspect-video bg-neutral-100">
           <img src="nan.jpg" alt="$SOBOHBOO Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -200,7 +200,7 @@
         </div>
       </div>
 
-      <!-- Project 2: Dawen -->
+      <!-- Project 2: Dawen (Live) -->
       <div class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col">
         <div class="relative overflow-hidden aspect-video bg-neutral-100">
           <img src="willofd.jpg" alt="Will Of D Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
@@ -228,36 +228,36 @@
         </div>
       </div>
 
-      <!-- Project 3: Robinhood Pepe -->
-      <div class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col">
+      <!-- Project 3: Robinhood Pepe (Modal Trigger) -->
+      <div onclick="openModal('robinhoodModal')" class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col cursor-pointer">
         <div class="relative overflow-hidden aspect-video bg-neutral-100">
           <img src="robinhood-pepe.jpg" alt="Robinhood Pepe Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <a href="#" target="_blank" rel="noopener noreferrer" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
-            <span>Visit Website</span>
-            <i data-lucide="external-link" class="w-4 h-4"></i>
-          </a>
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
+            <span>View Case Study</span>
+            <i data-lucide="eye" class="w-4 h-4"></i>
+          </div>
         </div>
         
         <div class="p-6 flex flex-col justify-between flex-grow">
           <div>
             <div class="flex items-center justify-between mb-2">
               <h3 class="text-xl font-bold text-black">Robinhood Pepe</h3>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800">Live</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-800">Concept / Case Study</span>
             </div>
             <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-              A community-driven Web3 platform combining iconic culture with modern Decentralized Finance utilities.
+              A community-driven Web3 platform concept combining iconic meme culture with modern DeFi features.
             </p>
           </div>
           
-          <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2">
-            robinhoodpepe.com
-            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
+          <button class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2">
+            View Design Breakdown
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
         </div>
       </div>
 
       <!-- Project 4: Rally Cat (Modal Trigger) -->
-      <div onclick="openModal()" class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col cursor-pointer">
+      <div onclick="openModal('rallycatModal')" class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col cursor-pointer">
         <div class="relative overflow-hidden aspect-video bg-neutral-100">
           <img src="rallycat.jpg" alt="Rally Cat Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
@@ -299,12 +299,50 @@
   </div>
   </section>
 
-  <!-- Rally Cat Details Modal -->
-  <div id="projectModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+  <!-- Robinhood Pepe Modal -->
+  <div id="robinhoodModal" class="modal-bg fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl relative border border-black/10">
-      
-      <!-- Close Button -->
-      <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition">
+      <button onclick="closeModal('robinhoodModal')" class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="space-y-6">
+        <div>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">Concept / Redesign Case Study</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-neutral-900 mt-3">Robinhood Pepe</h2>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-neutral-100">
+          <img src="robinhood-pepe.jpg" alt="Robinhood Pepe Hero Design" class="w-full h-full object-cover">
+        </div>
+
+        <div class="space-y-4 text-gray-600 leading-relaxed text-base">
+          <h3 class="text-lg font-bold text-black">Project Overview</h3>
+          <p>
+            A themed Web3 brand concept blending iconic Pepe aesthetics with modern, ultra-clean financial visual elements. Designed to improve conversion rates and present a high-trust interface to prospective holders.
+          </p>
+
+          <h3 class="text-lg font-bold text-black">Key Features & Improvements</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>Modern green-accented dark theme engineered for Web3 communities.</li>
+            <li>Interactive contract copy section with quick-access DEX links.</li>
+            <li>Optimized layout structure focused on mobile-first readability and engagement.</li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-black/5 flex justify-end">
+          <button onclick="closeModal('robinhoodModal')" class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition">
+            Close Overview
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rally Cat Details Modal -->
+  <div id="rallycatModal" class="modal-bg fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl relative border border-black/10">
+      <button onclick="closeModal('rallycatModal')" class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition">
         <i data-lucide="x" class="w-6 h-6"></i>
       </button>
 
@@ -333,12 +371,11 @@
         </div>
 
         <div class="pt-4 border-t border-black/5 flex justify-end">
-          <button onclick="closeModal()" class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition">
+          <button onclick="closeModal('rallycatModal')" class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition">
             Close Overview
           </button>
         </div>
       </div>
-
     </div>
   </div>
   
@@ -420,20 +457,20 @@
   <script>
     lucide.createIcons();
 
-    function openModal() {
-      document.getElementById('projectModal').classList.remove('hidden');
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
-      document.getElementById('projectModal').classList.add('hidden');
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
       document.body.style.overflow = 'auto';
     }
 
     // Close modal on background click
-    document.getElementById('projectModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeModal();
+    window.addEventListener('click', function(e) {
+      if (e.target.classList.contains('modal-bg')) {
+        closeModal(e.target.id);
       }
     });
   </script>
