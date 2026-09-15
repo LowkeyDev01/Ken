@@ -50,100 +50,154 @@
        NAVIGATION
     ======================================== */
 
-    .nav-shell {
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease;
-    }
+    /* ========================================
+   NAVIGATION
+======================================== */
 
-    .nav-shell.scrolled {
-      background: rgba(255, 255, 255, 0.92);
-      border-color: rgba(0, 0, 0, 0.12);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-    }
+.nav-shell {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
 
-    .nav-link {
-      position: relative;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.nav-shell.scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
 
-      padding: 6px;
+.nav-link {
+  position: relative;
 
-      color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-      transition:
-        color 0.25s ease,
-        transform 0.25s ease;
-    }
+  width: 34px;
+  height: 34px;
 
-    .nav-link svg {
-      width: 23px;
-      height: 23px;
-      stroke-width: 1.8;
-    }
+  color: #9ca3af;
 
-    .nav-link:hover {
-      color: #111827;
-      transform: translateY(-1px);
-    }
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
 
-    .nav-link.active {
-      color: #111827;
-    }
+.nav-link svg {
+  width: 21px;
+  height: 21px;
+  stroke-width: 1.8;
+}
 
-    .nav-link.active::after {
-      content: "";
+.nav-link:hover {
+  color: #111827;
+  transform: translateY(-1px);
+}
 
-      position: absolute;
-      bottom: -8px;
-      left: 50%;
+.nav-link.active {
+  color: #111827;
+}
 
-      width: 4px;
-      height: 4px;
+.nav-link.active::after {
+  content: "";
 
-      border-radius: 999px;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
 
-      background: #111827;
+  width: 4px;
+  height: 4px;
 
-      transform: translateX(-50%);
-    }
+  border-radius: 999px;
 
-    .nav-tooltip {
-      position: absolute;
-      top: calc(100% + 12px);
-      left: 50%;
+  background: #111827;
 
-      padding: 5px 9px;
+  transform: translateX(-50%);
+}
 
-      border-radius: 6px;
+.nav-tooltip {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
 
-      background: #111827;
-      color: white;
+  padding: 5px 9px;
 
-      font-size: 11px;
-      line-height: 1;
+  border-radius: 6px;
 
-      white-space: nowrap;
+  background: #111827;
+  color: white;
 
-      opacity: 0;
-      pointer-events: none;
+  font-size: 11px;
+  line-height: 1;
 
-      transform: translateX(-50%) translateY(-4px);
+  white-space: nowrap;
 
-      transition:
-        opacity 0.2s ease,
-        transform 0.2s ease;
-    }
+  opacity: 0;
+  pointer-events: none;
 
-    .nav-link:hover .nav-tooltip {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+  transform: translateX(-50%) translateY(-4px);
 
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-link:hover .nav-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ========================================
+   MOBILE NAV
+======================================== */
+
+@media (max-width: 640px) {
+
+  nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-shell {
+    width: auto;
+    max-width: calc(100vw - 24px);
+
+    padding: 8px 12px;
+
+    gap: 12px;
+  }
+
+  .nav-shell > .flex {
+    gap: 10px;
+  }
+
+  .nav-link {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-shell img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .nav-tooltip {
+    display: none;
+  }
+
+}
 
     /* ========================================
        SCROLL REVEAL
