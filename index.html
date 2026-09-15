@@ -3,14 +3,22 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Ken | Web3 Website Developer</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
@@ -19,6 +27,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
+
     /* ========================================
        BASE
     ======================================== */
@@ -29,10 +38,11 @@
 
     body {
       overflow-x: hidden;
+      font-family: "Inter", sans-serif;
     }
 
     section {
-      scroll-margin-top: 100px;
+      scroll-margin-top: 110px;
     }
 
 
@@ -247,6 +257,7 @@
     }
 
     @keyframes modalFadeIn {
+
       from {
         opacity: 0;
       }
@@ -254,9 +265,11 @@
       to {
         opacity: 1;
       }
+
     }
 
     @keyframes modalScaleIn {
+
       from {
         opacity: 0;
         transform: scale(0.96) translateY(10px);
@@ -266,6 +279,7 @@
         opacity: 1;
         transform: scale(1) translateY(0);
       }
+
     }
 
 
@@ -274,6 +288,7 @@
     ======================================== */
 
     @media (prefers-reduced-motion: reduce) {
+
       html {
         scroll-behavior: auto;
       }
@@ -290,14 +305,16 @@
         opacity: 1;
         transform: none;
       }
+
     }
 
 
     /* ========================================
-       MOBILE NAV
+       MOBILE
     ======================================== */
 
     @media (max-width: 640px) {
+
       .nav-shell {
         padding: 10px 14px;
       }
@@ -310,12 +327,15 @@
       .nav-tooltip {
         display: none;
       }
+
     }
+
   </style>
+
 </head>
 
 
-<body class="bg-white text-neutral-900 font-sans antialiased">
+<body class="bg-white text-neutral-900 antialiased">
 
 
   <!-- ========================================
@@ -332,24 +352,29 @@
     >
 
       <!-- Profile -->
+
       <a
         href="#home"
         class="shrink-0"
         aria-label="Home"
       >
+
         <img
           src="your-image.jpg"
           alt="Ken"
           class="w-10 h-10 rounded-full object-cover border border-black/10"
         >
+
       </a>
 
 
       <!-- Divider -->
+
       <div class="h-5 w-px bg-black/15"></div>
 
 
-      <!-- Navigation Links -->
+      <!-- Navigation -->
+
       <div class="flex items-center gap-5">
 
         <a
@@ -357,11 +382,13 @@
           class="nav-link active"
           aria-label="Home"
         >
+
           <i data-lucide="home"></i>
 
           <span class="nav-tooltip">
             Home
           </span>
+
         </a>
 
 
@@ -370,11 +397,13 @@
           class="nav-link"
           aria-label="About"
         >
+
           <i data-lucide="user"></i>
 
           <span class="nav-tooltip">
             About
           </span>
+
         </a>
 
 
@@ -383,11 +412,13 @@
           class="nav-link"
           aria-label="Projects"
         >
+
           <i data-lucide="folder-git-2"></i>
 
           <span class="nav-tooltip">
             Projects
           </span>
+
         </a>
 
 
@@ -396,11 +427,13 @@
           class="nav-link"
           aria-label="Contact"
         >
+
           <i data-lucide="mail"></i>
 
           <span class="nav-tooltip">
             Contact
           </span>
+
         </a>
 
       </div>
@@ -425,7 +458,7 @@
       <div class="grid md:grid-cols-2 gap-16 items-center">
 
 
-        <!-- Hero Content -->
+        <!-- Hero Copy -->
 
         <div data-reveal="left">
 
@@ -439,6 +472,7 @@
           <h1
             class="text-3xl md:text-5xl font-bold leading-tight tracking-tight"
           >
+
             Hi, I'm Ken.<br>
 
             I build websites for
@@ -446,14 +480,17 @@
               Web3
             </span>
             projects.
+
           </h1>
 
 
           <p
             class="mt-8 text-gray-600 text-lg leading-relaxed max-w-md"
           >
-            I create sleek and ultra-fast websites for memecoin projects.
-            Focused on clean design, performance, and conversion.
+
+            I create sleek, high-performance websites for Web3 projects —
+            built to look sharp, load fast, and give each project its own identity.
+
           </p>
 
 
@@ -522,13 +559,14 @@
           class="w-5 h-5 fill-current"
           viewBox="0 0 24 24"
         >
+
           <path
             d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
           />
+
         </svg>
 
       </a>
-
 
 
       <!-- Telegram -->
@@ -551,8 +589,11 @@
           stroke-linecap="round"
           stroke-linejoin="round"
         >
+
           <path d="m22 2-7 20-4-9-9-4Z" />
+
           <path d="M22 2 11 13" />
+
         </svg>
 
       </a>
@@ -592,7 +633,10 @@
         <h2
           class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900"
         >
-          Bridging high-converting design with Web3 tech.
+
+          I build Web3 experiences
+          that feel simple, fast, and intentional.
+
         </h2>
 
       </div>
@@ -602,7 +646,7 @@
       <div class="grid md:grid-cols-12 gap-12 items-start">
 
 
-        <!-- About Text -->
+        <!-- About Copy -->
 
         <div
           class="md:col-span-7 space-y-6 text-gray-600 text-base sm:text-lg leading-relaxed"
@@ -610,27 +654,39 @@
         >
 
           <p>
-            I’m
+
+            I'm
             <strong class="text-black font-semibold">
               Ken
             </strong>,
-            a Web3 web developer specializing in building sleek and ultra-fast
-            websites for memecoin projects that stand out in a fast-paced market.
+            a Web3 website developer focused on turning project ideas
+            into clean, high-performance digital experiences.
+
           </p>
 
 
           <p>
-            In Web3, first impressions happen in seconds.
-            I focus on ultra-fast load times, sleek mobile responsiveness,
-            and high-converting layouts that turn visitors into active
-            community members.
+
+            Whether it's a Web3 startup, NFT project, community-driven launch,
+            or something completely different, I focus on making the website
+            feel clear, memorable, and easy to use.
+
+          </p>
+
+
+          <p>
+
+            I care about the details that make a website feel finished —
+            from responsive layouts and performance to interactions,
+            structure, and the overall experience.
+
           </p>
 
         </div>
 
 
 
-        <!-- Stats / Stack -->
+        <!-- Stack -->
 
         <div
           class="md:col-span-5 space-y-8"
@@ -638,10 +694,11 @@
         >
 
 
-          <!-- Stats -->
+          <!-- Experience -->
 
-          <div class="grid grid-cols-2 gap-4">
-
+          <div
+            class="grid grid-cols-2 gap-4"
+          >
 
             <div
               class="p-5 bg-white border border-black/10 rounded-2xl shadow-sm"
@@ -652,17 +709,16 @@
               <span
                 class="block text-3xl font-bold text-black"
               >
-                15+
+                Web3
               </span>
 
               <span
                 class="text-xs text-gray-500 font-medium uppercase tracking-wider mt-1 block"
               >
-                Memecoin Projects
+                Focus
               </span>
 
             </div>
-
 
 
             <div
@@ -689,7 +745,7 @@
 
 
 
-          <!-- Stack -->
+          <!-- Core Stack -->
 
           <div
             class="p-6 bg-white border border-black/10 rounded-2xl shadow-sm space-y-4"
@@ -790,7 +846,7 @@
         <h2
           class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900"
         >
-          Selected Memecoin Works
+          Selected Web3 Works
         </h2>
 
       </div>
@@ -799,12 +855,14 @@
 
       <!-- Project Grid -->
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
 
 
-        <!-- =========================
+        <!-- ==================================
              SOBOHBOO
-        ========================= -->
+        ================================== -->
 
         <div
           data-reveal
@@ -830,9 +888,7 @@
               class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
             >
 
-              <span>
-                Visit Website
-              </span>
+              Visit Website
 
               <i
                 data-lucide="external-link"
@@ -874,8 +930,10 @@
               <p
                 class="text-gray-600 text-sm mb-4 leading-relaxed"
               >
-                A cute-type memecoin project featuring a friendly design,
-                custom tokenomics, and social hub.
+
+                A playful Web3 project with a custom visual identity,
+                community-focused experience, and responsive landing page.
+
               </p>
 
             </div>
@@ -903,9 +961,9 @@
 
 
 
-        <!-- =========================
+        <!-- ==================================
              DAWEN
-        ========================= -->
+        ================================== -->
 
         <div
           data-reveal
@@ -931,9 +989,7 @@
               class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
             >
 
-              <span>
-                Visit Website
-              </span>
+              Visit Website
 
               <i
                 data-lucide="external-link"
@@ -975,8 +1031,10 @@
               <p
                 class="text-gray-600 text-sm mb-4 leading-relaxed"
               >
-                A dark cult-type memecoin project website optimized for
-                speed, community growth, and conversion.
+
+                A character-driven Web3 project website built around
+                a bold visual identity and focused user experience.
+
               </p>
 
             </div>
@@ -1004,9 +1062,9 @@
 
 
 
-        <!-- =========================
+        <!-- ==================================
              ROKU
-        ========================= -->
+        ================================== -->
 
         <div
           data-reveal
@@ -1030,9 +1088,7 @@
               class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
             >
 
-              <span>
-                View Showcase
-              </span>
+              View Showcase
 
               <i
                 data-lucide="eye"
@@ -1065,7 +1121,7 @@
                 <span
                   class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800"
                 >
-                  Non-Affiliated Concept
+                  Concept
                 </span>
 
               </div>
@@ -1074,8 +1130,10 @@
               <p
                 class="text-gray-600 text-sm mb-4 leading-relaxed"
               >
-                An NFT project landing page featuring high-quality graphics
-                and clean visual layouts.
+
+                An NFT project landing page concept focused on
+                artwork, storytelling, and clean visual presentation.
+
               </p>
 
             </div>
@@ -1101,13 +1159,110 @@
 
 
 
-        <!-- =========================
-             ROBINHOOD PEPE
-        ========================= -->
+        <!-- ==================================
+             ORANGU
+        ================================== -->
 
         <div
           data-reveal
           data-delay="1"
+          onclick="openModal('oranguModal')"
+          class="project-card group border border-black/10 rounded-2xl overflow-hidden bg-white flex flex-col cursor-pointer"
+        >
+
+          <div
+            class="relative overflow-hidden aspect-video bg-neutral-100"
+          >
+
+            <img
+              src="orangu.jpg"
+              alt="Orangu Preview"
+              class="project-image w-full h-full object-cover"
+            >
+
+
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
+            >
+
+              View Case Study
+
+              <i
+                data-lucide="eye"
+                class="w-4 h-4"
+              ></i>
+
+            </div>
+
+          </div>
+
+
+
+          <div
+            class="p-6 flex flex-col justify-between flex-grow"
+          >
+
+            <div>
+
+              <div
+                class="flex items-center justify-between mb-2"
+              >
+
+                <h3
+                  class="text-xl font-bold text-black"
+                >
+                  Orangu
+                </h3>
+
+
+                <span
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800"
+                >
+                  Concept
+                </span>
+
+              </div>
+
+
+              <p
+                class="text-gray-600 text-sm mb-4 leading-relaxed"
+              >
+
+                A custom Web3 landing page built around a playful
+                character-driven identity and interactive experience.
+
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2"
+            >
+
+              View Case Study
+
+              <i
+                data-lucide="arrow-right"
+                class="w-3.5 h-3.5"
+              ></i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ==================================
+             ROBINHOOD PEPE
+        ================================== -->
+
+        <div
+          data-reveal
+          data-delay="2"
           onclick="openModal('robinhoodModal')"
           class="project-card group border border-black/10 rounded-2xl overflow-hidden bg-white flex flex-col cursor-pointer"
         >
@@ -1127,9 +1282,7 @@
               class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
             >
 
-              <span>
-                View Case Study
-              </span>
+              View Case Study
 
               <i
                 data-lucide="eye"
@@ -1162,7 +1315,7 @@
                 <span
                   class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800"
                 >
-                  Non-Affiliated Concept
+                  Concept
                 </span>
 
               </div>
@@ -1171,8 +1324,10 @@
               <p
                 class="text-gray-600 text-sm mb-4 leading-relaxed"
               >
-                The PEPE of Robinhood Chain memecoin project landing page
-                and concept setup.
+
+                A Web3 project concept built around a strong visual identity,
+                simple information architecture, and fast user flow.
+
               </p>
 
             </div>
@@ -1198,13 +1353,13 @@
 
 
 
-        <!-- =========================
-             RALLY CAT
-        ========================= -->
+        <!-- ==================================
+             RALLY CAT — LAST
+        ================================== -->
 
         <div
           data-reveal
-          data-delay="2"
+          data-delay="3"
           onclick="openModal('rallycatModal')"
           class="project-card group border border-black/10 rounded-2xl overflow-hidden bg-white flex flex-col cursor-pointer"
         >
@@ -1224,9 +1379,7 @@
               class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
             >
 
-              <span>
-                View Case Study
-              </span>
+              View Case Study
 
               <i
                 data-lucide="eye"
@@ -1259,7 +1412,7 @@
                 <span
                   class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800"
                 >
-                  Non-Affiliated Concept
+                  Concept
                 </span>
 
               </div>
@@ -1268,8 +1421,10 @@
               <p
                 class="text-gray-600 text-sm mb-4 leading-relaxed"
               >
-                The official token of Crypto Rally memecoin project
-                landing page redesign.
+
+                A character-led Web3 landing page concept designed
+                around a strong visual identity and clear token flow.
+
               </p>
 
             </div>
@@ -1290,52 +1445,6 @@
             </button>
 
           </div>
-
-        </div>
-
-
-
-        <!-- =========================
-             COMING SOON
-        ========================= -->
-
-        <div
-          data-reveal
-          data-delay="3"
-          class="border border-dashed border-black/20 rounded-2xl p-6 bg-neutral-50/50 flex flex-col justify-center items-center text-center min-h-[320px]"
-        >
-
-          <div
-            class="w-12 h-12 rounded-full bg-neutral-200/60 flex items-center justify-center mb-4 text-gray-400"
-          >
-
-            <i
-              data-lucide="plus"
-              class="w-6 h-6"
-            ></i>
-
-          </div>
-
-
-          <span
-            class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-200 text-gray-600 mb-2"
-          >
-            Coming Soon
-          </span>
-
-
-          <h3
-            class="text-lg font-bold text-gray-400"
-          >
-            Project Slot #6
-          </h3>
-
-
-          <p
-            class="text-xs text-gray-400 mt-2 max-w-[200px]"
-          >
-            Next memecoin build currently in production.
-          </p>
 
         </div>
 
@@ -1381,7 +1490,7 @@
           <span
             class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800"
           >
-            Non-Affiliated Concept
+            Concept
           </span>
 
 
@@ -1392,7 +1501,6 @@
           </h2>
 
         </div>
-
 
 
         <div class="grid gap-4">
@@ -1430,7 +1538,6 @@
           </div>
 
 
-
           <div class="space-y-2">
 
             <h4
@@ -1457,7 +1564,6 @@
         </div>
 
 
-
         <div
           class="space-y-4 text-gray-600 leading-relaxed text-base"
         >
@@ -1468,8 +1574,10 @@
 
 
           <p>
+
             An NFT project landing page concept designed around
             high-quality graphics, artwork display, and clean presentation.
+
           </p>
 
 
@@ -1485,7 +1593,7 @@
             </li>
 
             <li>
-              Simple layout for roadmap and project details.
+              Simple layout for project details and storytelling.
             </li>
 
             <li>
@@ -1497,13 +1605,139 @@
         </div>
 
 
-
         <div
           class="pt-4 border-t border-black/5 flex justify-end"
         >
 
           <button
             onclick="closeModal('rokuModal')"
+            class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition"
+          >
+            Close Overview
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ========================================
+       ORANGU MODAL
+  ======================================== -->
+
+  <div
+    id="oranguModal"
+    class="modal-bg fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+  >
+
+    <div
+      class="modal-content bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl relative border border-black/10"
+    >
+
+      <button
+        onclick="closeModal('oranguModal')"
+        class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition"
+        aria-label="Close Orangu modal"
+      >
+
+        <i
+          data-lucide="x"
+          class="w-6 h-6"
+        ></i>
+
+      </button>
+
+
+      <div class="space-y-6">
+
+        <div>
+
+          <span
+            class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800"
+          >
+            Concept
+          </span>
+
+
+          <h2
+            class="text-3xl sm:text-4xl font-extrabold text-neutral-900 mt-3"
+          >
+            Orangu
+          </h2>
+
+        </div>
+
+
+        <div
+          class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-neutral-100"
+        >
+
+          <img
+            src="orangu.jpg"
+            alt="Orangu Website Design"
+            class="w-full h-full object-cover"
+          >
+
+        </div>
+
+
+        <div
+          class="space-y-4 text-gray-600 leading-relaxed text-base"
+        >
+
+          <h3 class="text-lg font-bold text-black">
+            Project Overview
+          </h3>
+
+
+          <p>
+
+            A custom Web3 landing page built around a playful,
+            character-driven identity while keeping the interface
+            clean, responsive, and easy to navigate.
+
+          </p>
+
+
+          <h3 class="text-lg font-bold text-black">
+            Key Highlights
+          </h3>
+
+
+          <ul class="list-disc list-inside space-y-1">
+
+            <li>
+              Custom visual direction built around the Orangu character.
+            </li>
+
+            <li>
+              Interactive project sections and custom wallet experience.
+            </li>
+
+            <li>
+              Responsive layout designed for both desktop and mobile.
+            </li>
+
+            <li>
+              Focused on giving the project its own visual identity.
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div
+          class="pt-4 border-t border-black/5 flex justify-end"
+        >
+
+          <button
+            onclick="closeModal('oranguModal')"
             class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition"
           >
             Close Overview
@@ -1553,7 +1787,7 @@
           <span
             class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800"
           >
-            Non-Affiliated Concept
+            Concept
           </span>
 
 
@@ -1564,7 +1798,6 @@
           </h2>
 
         </div>
-
 
 
         <div
@@ -1580,7 +1813,6 @@
         </div>
 
 
-
         <div
           class="space-y-4 text-gray-600 leading-relaxed text-base"
         >
@@ -1591,9 +1823,10 @@
 
 
           <p>
-            The PEPE of Robinhood Chain.
-            A sleek, ultra-fast memecoin project concept matching
-            the custom aesthetic of the brand.
+
+            A Web3 project concept built around a strong visual identity,
+            clear hierarchy, and simple user flow.
+
           </p>
 
 
@@ -1605,21 +1838,20 @@
           <ul class="list-disc list-inside space-y-1">
 
             <li>
-              Sleek dark theme with forest green accents.
+              Strong visual hierarchy.
             </li>
 
             <li>
-              Mobile-responsive layout optimized for fast load times.
+              Responsive Web3 landing page structure.
             </li>
 
             <li>
-              Direct links for DEX charts and community channels.
+              Clear calls to action and project information.
             </li>
 
           </ul>
 
         </div>
-
 
 
         <div
@@ -1677,7 +1909,7 @@
           <span
             class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800"
           >
-            Non-Affiliated Concept
+            Concept
           </span>
 
 
@@ -1688,7 +1920,6 @@
           </h2>
 
         </div>
-
 
 
         <div
@@ -1704,7 +1935,6 @@
         </div>
 
 
-
         <div
           class="space-y-4 text-gray-600 leading-relaxed text-base"
         >
@@ -1715,8 +1945,10 @@
 
 
           <p>
-            The official token of Crypto Rally.
-            Designed as a high-converting, ultra-fast hero section for $RCAT.
+
+            A character-led Web3 landing page concept designed around
+            a strong visual identity and clear token flow.
+
           </p>
 
 
@@ -1728,22 +1960,20 @@
           <ul class="list-disc list-inside space-y-1">
 
             <li>
-              High-contrast theme with bright neon green accents.
+              Strong character-focused visual direction.
             </li>
 
             <li>
-              Optimized CTA structure for instant tokenomics
-              and contract address access.
+              Clear CTA structure.
             </li>
 
             <li>
-              Lightweight performance built for mobile browsers.
+              Lightweight responsive layout.
             </li>
 
           </ul>
 
         </div>
-
 
 
         <div
@@ -1793,15 +2023,20 @@
         <h2
           class="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 mb-6"
         >
-          Let's build something epic together.
+
+          Let's build something
+          worth remembering.
+
         </h2>
 
 
         <p
           class="text-gray-600 text-base sm:text-lg mb-10 leading-relaxed"
         >
-          Have a memecoin launch in mind?
-          My inbox and DMs are always open.
+
+          Have a Web3 project in mind?
+          Let's talk about what you're building.
+
         </p>
 
 
@@ -1923,7 +2158,7 @@
                 <span
                   class="text-sm font-bold text-black"
                 >
-                  X (Twitter)
+                  X
                 </span>
 
               </div>
@@ -1982,7 +2217,7 @@
   ======================================== -->
 
   <footer
-    class="py-8 bg-white border-t border-black/5 text-center"
+    class="py-8 bg-white border-t border-black/5"
   >
 
     <div
@@ -1990,7 +2225,9 @@
     >
 
       <p class="text-xs text-gray-500">
+
         &copy; Ken. All rights reserved.
+
       </p>
 
 
@@ -2002,7 +2239,7 @@
           class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
         ></span>
 
-        Available for Memecoin projects
+        Available for Web3 projects
 
       </div>
 
@@ -2032,7 +2269,8 @@
 
     function openModal(id) {
 
-      const modal = document.getElementById(id);
+      const modal =
+        document.getElementById(id);
 
       if (!modal) return;
 
@@ -2045,7 +2283,8 @@
 
     function closeModal(id) {
 
-      const modal = document.getElementById(id);
+      const modal =
+        document.getElementById(id);
 
       if (!modal) return;
 
@@ -2058,43 +2297,49 @@
 
 
     /* ========================================
-       CLOSE MODAL ON BACKDROP CLICK
+       CLOSE ON BACKDROP
     ======================================== */
 
-    document.addEventListener("click", (event) => {
+    document.addEventListener(
+      "click",
+      (event) => {
 
-      if (
-        event.target.classList.contains("modal-bg")
-      ) {
+        if (
+          event.target.classList.contains("modal-bg")
+        ) {
 
-        closeModal(event.target.id);
+          closeModal(event.target.id);
+
+        }
 
       }
-
-    });
+    );
 
 
 
     /* ========================================
-       CLOSE MODAL WITH ESCAPE
+       CLOSE WITH ESC
     ======================================== */
 
-    document.addEventListener("keydown", (event) => {
+    document.addEventListener(
+      "keydown",
+      (event) => {
 
-      if (event.key !== "Escape") return;
+        if (event.key !== "Escape") return;
 
-      const openModals =
-        document.querySelectorAll(
-          ".modal-bg:not(.hidden)"
-        );
+        const openModals =
+          document.querySelectorAll(
+            ".modal-bg:not(.hidden)"
+          );
 
-      openModals.forEach((modal) => {
+        openModals.forEach((modal) => {
 
-        closeModal(modal.id);
+          closeModal(modal.id);
 
-      });
+        });
 
-    });
+      }
+    );
 
 
 
@@ -2103,7 +2348,9 @@
     ======================================== */
 
     const revealElements =
-      document.querySelectorAll("[data-reveal]");
+      document.querySelectorAll(
+        "[data-reveal]"
+      );
 
 
     const revealObserver =
@@ -2118,7 +2365,9 @@
               "is-visible"
             );
 
-            observer.unobserve(entry.target);
+            observer.unobserve(
+              entry.target
+            );
 
           });
 
@@ -2132,11 +2381,15 @@
       );
 
 
-    revealElements.forEach((element) => {
+    revealElements.forEach(
+      (element) => {
 
-      revealObserver.observe(element);
+        revealObserver.observe(
+          element
+        );
 
-    });
+      }
+    );
 
 
 
@@ -2160,45 +2413,53 @@
       new IntersectionObserver(
         (entries) => {
 
-          entries.forEach((entry) => {
+          entries.forEach(
+            (entry) => {
 
-            if (!entry.isIntersecting) return;
+              if (
+                !entry.isIntersecting
+              ) return;
 
-            const currentId =
-              entry.target.id;
-
-
-            navLinks.forEach((link) => {
-
-              const isActive =
-                link.getAttribute("href") ===
-                `#${currentId}`;
+              const currentId =
+                entry.target.id;
 
 
-              link.classList.toggle(
-                "active",
-                isActive
+              navLinks.forEach(
+                (link) => {
+
+                  const isActive =
+                    link.getAttribute(
+                      "href"
+                    ) ===
+                    `#${currentId}`;
+
+
+                  link.classList.toggle(
+                    "active",
+                    isActive
+                  );
+
+
+                  if (isActive) {
+
+                    link.setAttribute(
+                      "aria-current",
+                      "page"
+                    );
+
+                  } else {
+
+                    link.removeAttribute(
+                      "aria-current"
+                    );
+
+                  }
+
+                }
               );
 
-
-              if (isActive) {
-
-                link.setAttribute(
-                  "aria-current",
-                  "page"
-                );
-
-              } else {
-
-                link.removeAttribute(
-                  "aria-current"
-                );
-
-              }
-
-            });
-
-          });
+            }
+          );
 
         },
         {
@@ -2210,11 +2471,15 @@
       );
 
 
-    sections.forEach((section) => {
+    sections.forEach(
+      (section) => {
 
-      sectionObserver.observe(section);
+        sectionObserver.observe(
+          section
+        );
 
-    });
+      }
+    );
 
 
 
@@ -2263,38 +2528,41 @@
 
 
     /* ========================================
-       NAV LINK CLICK
+       NAV CLICK
     ======================================== */
 
-    navLinks.forEach((link) => {
+    navLinks.forEach(
+      (link) => {
 
-      link.addEventListener(
-        "click",
-        () => {
+        link.addEventListener(
+          "click",
+          () => {
 
-          navLinks.forEach((item) => {
+            navLinks.forEach(
+              (item) => {
 
-            item.classList.remove(
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            link.classList.add(
               "active"
             );
 
-          });
+          }
+        );
 
-
-          link.classList.add(
-            "active"
-          );
-
-        }
-      );
-
-    });
+      }
+    );
 
 
 
     /* ========================================
-       PREVENT BODY SCROLL BUG
-       WHEN USING BROWSER BACK/FORWARD
+       PAGE SHOW
     ======================================== */
 
     window.addEventListener(
@@ -2308,7 +2576,8 @@
 
         if (!openModal) {
 
-          document.body.style.overflow = "";
+          document.body.style.overflow =
+            "";
 
         }
 
