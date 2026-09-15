@@ -4,549 +4,2319 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Ken | Web3 Website Developer</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
   <script src="https://unpkg.com/lucide@latest"></script>
-  
+
+  <style>
+    /* ========================================
+       BASE
+    ======================================== */
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    section {
+      scroll-margin-top: 100px;
+    }
+
+
+    /* ========================================
+       NAVIGATION
+    ======================================== */
+
+    .nav-shell {
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .nav-shell.scrolled {
+      background: rgba(255, 255, 255, 0.92);
+      border-color: rgba(0, 0, 0, 0.12);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-link {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 6px;
+
+      color: #9ca3af;
+
+      transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .nav-link svg {
+      width: 23px;
+      height: 23px;
+      stroke-width: 1.8;
+    }
+
+    .nav-link:hover {
+      color: #111827;
+      transform: translateY(-1px);
+    }
+
+    .nav-link.active {
+      color: #111827;
+    }
+
+    .nav-link.active::after {
+      content: "";
+
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+
+      width: 4px;
+      height: 4px;
+
+      border-radius: 999px;
+
+      background: #111827;
+
+      transform: translateX(-50%);
+    }
+
+    .nav-tooltip {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+
+      padding: 5px 9px;
+
+      border-radius: 6px;
+
+      background: #111827;
+      color: white;
+
+      font-size: 11px;
+      line-height: 1;
+
+      white-space: nowrap;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transform: translateX(-50%) translateY(-4px);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .nav-link:hover .nav-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+
+    /* ========================================
+       SCROLL REVEAL
+    ======================================== */
+
+    [data-reveal] {
+      opacity: 0;
+
+      transform: translateY(35px);
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-reveal="left"] {
+      transform: translateX(-35px);
+    }
+
+    [data-reveal="right"] {
+      transform: translateX(35px);
+    }
+
+    [data-reveal="scale"] {
+      transform: scale(0.94);
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translate(0) scale(1);
+    }
+
+
+    /* ========================================
+       STAGGERED REVEALS
+    ======================================== */
+
+    [data-delay="1"] {
+      transition-delay: 0.08s;
+    }
+
+    [data-delay="2"] {
+      transition-delay: 0.16s;
+    }
+
+    [data-delay="3"] {
+      transition-delay: 0.24s;
+    }
+
+    [data-delay="4"] {
+      transition-delay: 0.32s;
+    }
+
+    [data-delay="5"] {
+      transition-delay: 0.4s;
+    }
+
+
+    /* ========================================
+       PROJECT CARDS
+    ======================================== */
+
+    .project-card {
+      transition:
+        box-shadow 0.35s ease,
+        transform 0.35s ease,
+        border-color 0.35s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 0, 0, 0.16);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-image {
+      transition:
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.04);
+    }
+
+
+    /* ========================================
+       BUTTONS
+    ======================================== */
+
+    .magnetic-button {
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .magnetic-button:hover {
+      transform: translateY(-2px);
+    }
+
+
+    /* ========================================
+       MODALS
+    ======================================== */
+
+    .modal-bg {
+      animation: modalFadeIn 0.2s ease forwards;
+    }
+
+    .modal-content {
+      animation: modalScaleIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes modalScaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96) translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+
+    /* ========================================
+       REDUCED MOTION
+    ======================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      [data-reveal] {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+
+    /* ========================================
+       MOBILE NAV
+    ======================================== */
+
+    @media (max-width: 640px) {
+      .nav-shell {
+        padding: 10px 14px;
+      }
+
+      .nav-link svg {
+        width: 21px;
+        height: 21px;
+      }
+
+      .nav-tooltip {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 
 <body class="bg-white text-neutral-900 font-sans antialiased">
 
-<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-fit">
-  <div class="bg-white/80 backdrop-blur-md border border-black/10 rounded-full px-5 py-3 flex items-center justify-between sm:justify-start gap-4 sm:gap-6 shadow-md mx-auto">
-    
-    <img src="your-image.jpg" alt="Ken Profile" class="w-10 h-10 rounded-full object-cover border border-black/10 flex-shrink-0">
 
-    <div class="h-5 w-[1px] bg-black/15 flex-shrink-0"></div>
+  <!-- ========================================
+       NAVIGATION
+  ======================================== -->
 
-    <div class="flex items-center gap-4 sm:gap-6">
-      <a href="#home" class="group relative text-gray-900 hover:text-black transition p-1" aria-label="Home">
-        <i data-lucide="home" class="w-6 h-6"></i>
-        <span class="absolute -bottom-9 left-1/2 -translate-x-1/2 text-[11px] bg-black text-white px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap shadow-sm">Home</span>
+  <nav
+    class="fixed top-6 left-1/2 -translate-x-1/2 z-50"
+    aria-label="Main navigation"
+  >
+
+    <div
+      class="nav-shell bg-white/80 backdrop-blur-md border border-black/10 rounded-full px-5 py-3 flex items-center gap-5 shadow-md"
+    >
+
+      <!-- Profile -->
+      <a
+        href="#home"
+        class="shrink-0"
+        aria-label="Home"
+      >
+        <img
+          src="your-image.jpg"
+          alt="Ken"
+          class="w-10 h-10 rounded-full object-cover border border-black/10"
+        >
       </a>
 
-      <a href="#about" class="group relative text-gray-400 hover:text-black transition p-1" aria-label="About">
-        <i data-lucide="user" class="w-6 h-6"></i>
-        <span class="absolute -bottom-9 left-1/2 -translate-x-1/2 text-[11px] bg-black text-white px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap shadow-sm">About</span>
-      </a>
 
-      <a href="#projects" class="group relative text-gray-400 hover:text-black transition p-1" aria-label="Projects">
-        <i data-lucide="folder-git-2" class="w-6 h-6"></i>
-        <span class="absolute -bottom-9 left-1/2 -translate-x-1/2 text-[11px] bg-black text-white px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap shadow-sm">Projects</span>
-      </a>
+      <!-- Divider -->
+      <div class="h-5 w-px bg-black/15"></div>
 
-      <a href="#contact" class="group relative text-gray-400 hover:text-black transition p-1" aria-label="Contact">
-        <i data-lucide="mail" class="w-6 h-6"></i>
-        <span class="absolute -bottom-9 left-1/2 -translate-x-1/2 text-[11px] bg-black text-white px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap shadow-sm">Contact</span>
-      </a>
+
+      <!-- Navigation Links -->
+      <div class="flex items-center gap-5">
+
+        <a
+          href="#home"
+          class="nav-link active"
+          aria-label="Home"
+        >
+          <i data-lucide="home"></i>
+
+          <span class="nav-tooltip">
+            Home
+          </span>
+        </a>
+
+
+        <a
+          href="#about"
+          class="nav-link"
+          aria-label="About"
+        >
+          <i data-lucide="user"></i>
+
+          <span class="nav-tooltip">
+            About
+          </span>
+        </a>
+
+
+        <a
+          href="#projects"
+          class="nav-link"
+          aria-label="Projects"
+        >
+          <i data-lucide="folder-git-2"></i>
+
+          <span class="nav-tooltip">
+            Projects
+          </span>
+        </a>
+
+
+        <a
+          href="#contact"
+          class="nav-link"
+          aria-label="Contact"
+        >
+          <i data-lucide="mail"></i>
+
+          <span class="nav-tooltip">
+            Contact
+          </span>
+        </a>
+
+      </div>
+
     </div>
 
-  </div>
-</nav>
+  </nav>
 
-  <section id="home" class="min-h-screen relative flex items-center overflow-hidden pt-36 md:pt-0">
+
+
+  <!-- ========================================
+       HERO
+  ======================================== -->
+
+  <section
+    id="home"
+    class="min-h-screen relative flex items-center overflow-hidden pt-36 md:pt-0"
+  >
+
     <div class="max-w-7xl mx-auto px-6 w-full">
+
       <div class="grid md:grid-cols-2 gap-16 items-center">
-        
-        <div>
-          <p class="text-xs uppercase tracking-[6px] text-black font-medium mb-6">
+
+
+        <!-- Hero Content -->
+
+        <div data-reveal="left">
+
+          <p
+            class="text-xs uppercase tracking-[6px] text-black font-medium mb-6"
+          >
             Web3 Website Developer
           </p>
 
-          <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-            Hi, I'm <span>Ken.</span><br>
-            I build websites for <span class="text-gray-400">Web3</span> projects.
+
+          <h1
+            class="text-3xl md:text-5xl font-bold leading-tight tracking-tight"
+          >
+            Hi, I'm Ken.<br>
+
+            I build websites for
+            <span class="text-gray-400">
+              Web3
+            </span>
+            projects.
           </h1>
 
-          <p class="mt-8 text-gray-600 text-lg leading-relaxed max-w-md">
-            I create sleek and ultra-fast websites for memecoin projects. Focused on clean design, performance, and conversion.
+
+          <p
+            class="mt-8 text-gray-600 text-lg leading-relaxed max-w-md"
+          >
+            I create sleek and ultra-fast websites for memecoin projects.
+            Focused on clean design, performance, and conversion.
           </p>
+
 
           <div class="mt-10 flex gap-4">
-            <a href="#projects" class="bg-black text-white px-7 py-3 rounded-full text-sm font-medium hover:scale-105 transition">
+
+            <a
+              href="#projects"
+              class="magnetic-button bg-black text-white px-7 py-3 rounded-full text-sm font-medium"
+            >
               View Projects
             </a>
-            <a href="#contact" class="border border-black/10 px-7 py-3 rounded-full text-sm font-medium hover:bg-black hover:text-white transition">
+
+
+            <a
+              href="#contact"
+              class="magnetic-button border border-black/10 px-7 py-3 rounded-full text-sm font-medium hover:bg-black hover:text-white transition"
+            >
               Contact Me
             </a>
+
           </div>
+
         </div>
 
-        <div class="flex justify-center md:justify-end">
-          <img src="your-image.jpg" alt="Ken Headshot" class="w-72 h-72 md:w-[420px] md:h-[420px] rounded-full object-cover border border-black/10 shadow-xl">
+
+
+        <!-- Hero Image -->
+
+        <div
+          data-reveal="right"
+          class="flex justify-center md:justify-end"
+        >
+
+          <img
+            src="your-image.jpg"
+            alt="Ken"
+            class="w-72 h-72 md:w-[420px] md:h-[420px] rounded-full object-cover border border-black/10 shadow-xl"
+          >
+
         </div>
 
       </div>
-    </div>
-
-    <div class="fixed bottom-6 right-6 z-40 flex items-center gap-3">
-  
-  <a href="https://x.com/0x_Kenny" target="_blank" rel="noopener noreferrer" class="p-3 bg-white/80 backdrop-blur-md border border-black/10 rounded-full text-black hover:scale-110 transition shadow-sm flex items-center justify-center" aria-label="X">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  </a>
-
-  <a href="https://t.me/IamKenny01" target="_blank" rel="noopener noreferrer" class="p-3 bg-white/80 backdrop-blur-md border border-black/10 rounded-full text-black hover:scale-110 transition shadow-sm flex items-center justify-center" aria-label="Telegram">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="m22 2-7 20-4-9-9-4Z"/>
-      <path d="M22 2 11 13"/>
-    </svg>
-  </a>
 
     </div>
+
+
+
+    <!-- Social Links -->
+
+    <div
+      class="fixed bottom-6 right-6 z-40 flex items-center gap-3"
+    >
+
+      <!-- X -->
+
+      <a
+        href="https://x.com/0x_Kenny"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="p-3 bg-white/80 backdrop-blur-md border border-black/10 rounded-full text-black hover:scale-110 transition shadow-sm flex items-center justify-center"
+        aria-label="X"
+      >
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5 fill-current"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+          />
+        </svg>
+
+      </a>
+
+
+
+      <!-- Telegram -->
+
+      <a
+        href="https://t.me/IamKenny01"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="p-3 bg-white/80 backdrop-blur-md border border-black/10 rounded-full text-black hover:scale-110 transition shadow-sm flex items-center justify-center"
+        aria-label="Telegram"
+      >
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m22 2-7 20-4-9-9-4Z" />
+          <path d="M22 2 11 13" />
+        </svg>
+
+      </a>
+
+    </div>
+
   </section>
 
-  <section id="about" class="py-24 bg-neutral-50 border-y border-black/5">
-  <div class="max-w-7xl mx-auto px-6">
-    
-    <div class="max-w-xl mb-16">
-      <p class="text-xs uppercase tracking-[6px] text-gray-500 font-semibold mb-3">
-        About Me
-      </p>
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900">
-        Bridging high-converting design with Web3 tech.
-      </h2>
-    </div>
 
-    <div class="grid md:grid-cols-12 gap-12 items-start">
-      
-      <div class="md:col-span-7 space-y-6 text-gray-600 text-base sm:text-lg leading-relaxed">
-        <p>
-          I’m <strong class="text-black font-semibold">Ken</strong>, a Web3 web developer specializing in building sleek and ultra-fast websites for memecoin projects that stand out in a fast-paced market.
+
+  <!-- ========================================
+       ABOUT
+  ======================================== -->
+
+  <section
+    id="about"
+    class="py-24 bg-neutral-50 border-y border-black/5"
+  >
+
+    <div class="max-w-7xl mx-auto px-6">
+
+
+      <!-- Heading -->
+
+      <div
+        class="max-w-xl mb-16"
+        data-reveal
+      >
+
+        <p
+          class="text-xs uppercase tracking-[6px] text-gray-500 font-semibold mb-3"
+        >
+          About Me
         </p>
-        <p>
-          In Web3, first impressions happen in seconds. I focus on ultra-fast load times, sleek mobile responsiveness, and high-converting layouts that turn visitors into active community members.
+
+
+        <h2
+          class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900"
+        >
+          Bridging high-converting design with Web3 tech.
+        </h2>
+
+      </div>
+
+
+
+      <div class="grid md:grid-cols-12 gap-12 items-start">
+
+
+        <!-- About Text -->
+
+        <div
+          class="md:col-span-7 space-y-6 text-gray-600 text-base sm:text-lg leading-relaxed"
+          data-reveal="left"
+        >
+
+          <p>
+            I’m
+            <strong class="text-black font-semibold">
+              Ken
+            </strong>,
+            a Web3 web developer specializing in building sleek and ultra-fast
+            websites for memecoin projects that stand out in a fast-paced market.
+          </p>
+
+
+          <p>
+            In Web3, first impressions happen in seconds.
+            I focus on ultra-fast load times, sleek mobile responsiveness,
+            and high-converting layouts that turn visitors into active
+            community members.
+          </p>
+
+        </div>
+
+
+
+        <!-- Stats / Stack -->
+
+        <div
+          class="md:col-span-5 space-y-8"
+          data-reveal="right"
+        >
+
+
+          <!-- Stats -->
+
+          <div class="grid grid-cols-2 gap-4">
+
+
+            <div
+              class="p-5 bg-white border border-black/10 rounded-2xl shadow-sm"
+              data-reveal
+              data-delay="1"
+            >
+
+              <span
+                class="block text-3xl font-bold text-black"
+              >
+                15+
+              </span>
+
+              <span
+                class="text-xs text-gray-500 font-medium uppercase tracking-wider mt-1 block"
+              >
+                Memecoin Projects
+              </span>
+
+            </div>
+
+
+
+            <div
+              class="p-5 bg-white border border-black/10 rounded-2xl shadow-sm"
+              data-reveal
+              data-delay="2"
+            >
+
+              <span
+                class="block text-3xl font-bold text-black"
+              >
+                100%
+              </span>
+
+              <span
+                class="text-xs text-gray-500 font-medium uppercase tracking-wider mt-1 block"
+              >
+                Responsive
+              </span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Stack -->
+
+          <div
+            class="p-6 bg-white border border-black/10 rounded-2xl shadow-sm space-y-4"
+            data-reveal
+            data-delay="3"
+          >
+
+            <h3
+              class="text-sm font-semibold uppercase tracking-wider text-black"
+            >
+              Core Stack
+            </h3>
+
+
+            <div class="flex flex-wrap gap-2">
+
+              <span
+                class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5"
+              >
+                HTML5 / CSS3
+              </span>
+
+
+              <span
+                class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5"
+              >
+                Tailwind CSS
+              </span>
+
+
+              <span
+                class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5"
+              >
+                JavaScript
+              </span>
+
+
+              <span
+                class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5"
+              >
+                Web3 Integration
+              </span>
+
+
+              <span
+                class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5"
+              >
+                Node.js
+              </span>
+
+
+              <span
+                class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5"
+              >
+                DApp Frontends
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================
+       PROJECTS
+  ======================================== -->
+
+  <section
+    id="projects"
+    class="py-24 bg-white border-t border-black/5"
+  >
+
+    <div class="max-w-7xl mx-auto px-6">
+
+
+      <!-- Heading -->
+
+      <div
+        class="max-w-xl mb-16"
+        data-reveal
+      >
+
+        <p
+          class="text-xs uppercase tracking-[6px] text-gray-500 font-semibold mb-3"
+        >
+          Portfolio
         </p>
+
+
+        <h2
+          class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900"
+        >
+          Selected Memecoin Works
+        </h2>
+
       </div>
 
-      <div class="md:col-span-5 space-y-8">
-        
-        <div class="grid grid-cols-2 gap-4">
-          <div class="p-5 bg-white border border-black/10 rounded-2xl shadow-sm">
-            <span class="block text-3xl font-bold text-black">15+</span>
-            <span class="text-xs text-gray-500 font-medium uppercase tracking-wider mt-1 block">Memecoin Projects</span>
+
+
+      <!-- Project Grid -->
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+        <!-- =========================
+             SOBOHBOO
+        ========================= -->
+
+        <div
+          data-reveal
+          data-delay="1"
+          class="project-card group border border-black/10 rounded-2xl overflow-hidden bg-white flex flex-col"
+        >
+
+          <div
+            class="relative overflow-hidden aspect-video bg-neutral-100"
+          >
+
+            <img
+              src="nan.jpg"
+              alt="$SOBOHBOO Preview"
+              class="project-image w-full h-full object-cover"
+            >
+
+
+            <a
+              href="https://sobohboo.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
+            >
+
+              <span>
+                Visit Website
+              </span>
+
+              <i
+                data-lucide="external-link"
+                class="w-4 h-4"
+              ></i>
+
+            </a>
+
           </div>
-          <div class="p-5 bg-white border border-black/10 rounded-2xl shadow-sm">
-            <span class="block text-3xl font-bold text-black">100%</span>
-            <span class="text-xs text-gray-500 font-medium uppercase tracking-wider mt-1 block">Responsive</span>
+
+
+
+          <div
+            class="p-6 flex flex-col justify-between flex-grow"
+          >
+
+            <div>
+
+              <div
+                class="flex items-center justify-between mb-2"
+              >
+
+                <h3
+                  class="text-xl font-bold text-black"
+                >
+                  $SOBOHBOO
+                </h3>
+
+
+                <span
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800"
+                >
+                  Live
+                </span>
+
+              </div>
+
+
+              <p
+                class="text-gray-600 text-sm mb-4 leading-relaxed"
+              >
+                A cute-type memecoin project featuring a friendly design,
+                custom tokenomics, and social hub.
+              </p>
+
+            </div>
+
+
+            <a
+              href="https://sobohboo.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2"
+            >
+
+              sobohboo.vercel.app
+
+              <i
+                data-lucide="external-link"
+                class="w-3.5 h-3.5"
+              ></i>
+
+            </a>
+
           </div>
+
         </div>
 
-        <div class="p-6 bg-white border border-black/10 rounded-2xl shadow-sm space-y-4">
-          <h3 class="text-sm font-semibold uppercase tracking-wider text-black">Core Stack</h3>
-          
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5">HTML5 / CSS3</span>
-            <span class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5">Tailwind CSS</span>
-            <span class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5">JavaScript</span>
-            <span class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5">Web3 Integration</span>
-            <span class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5">Node.js</span>
-            <span class="px-3 py-1.5 bg-neutral-100 text-neutral-800 text-xs font-medium rounded-lg border border-black/5">DApp Frontends</span>
+
+
+        <!-- =========================
+             DAWEN
+        ========================= -->
+
+        <div
+          data-reveal
+          data-delay="2"
+          class="project-card group border border-black/10 rounded-2xl overflow-hidden bg-white flex flex-col"
+        >
+
+          <div
+            class="relative overflow-hidden aspect-video bg-neutral-100"
+          >
+
+            <img
+              src="willofd.jpg"
+              alt="Dawen Preview"
+              class="project-image w-full h-full object-cover"
+            >
+
+
+            <a
+              href="https://willofd.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
+            >
+
+              <span>
+                Visit Website
+              </span>
+
+              <i
+                data-lucide="external-link"
+                class="w-4 h-4"
+              ></i>
+
+            </a>
+
           </div>
+
+
+
+          <div
+            class="p-6 flex flex-col justify-between flex-grow"
+          >
+
+            <div>
+
+              <div
+                class="flex items-center justify-between mb-2"
+              >
+
+                <h3
+                  class="text-xl font-bold text-black"
+                >
+                  Dawen
+                </h3>
+
+
+                <span
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800"
+                >
+                  Live
+                </span>
+
+              </div>
+
+
+              <p
+                class="text-gray-600 text-sm mb-4 leading-relaxed"
+              >
+                A dark cult-type memecoin project website optimized for
+                speed, community growth, and conversion.
+              </p>
+
+            </div>
+
+
+            <a
+              href="https://willofd.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2"
+            >
+
+              willofd.xyz
+
+              <i
+                data-lucide="external-link"
+                class="w-3.5 h-3.5"
+              ></i>
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             ROKU
+        ========================= -->
+
+        <div
+          data-reveal
+          data-delay="3"
+          onclick="openModal('rokuModal')"
+          class="project-card group border border-black/10 rounded-2xl overflow-hidden bg-white flex flex-col cursor-pointer"
+        >
+
+          <div
+            class="relative overflow-hidden aspect-video bg-neutral-100"
+          >
+
+            <img
+              src="roku-preview.jpg"
+              alt="Roku NFT Preview"
+              class="project-image w-full h-full object-cover"
+            >
+
+
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
+            >
+
+              <span>
+                View Showcase
+              </span>
+
+              <i
+                data-lucide="eye"
+                class="w-4 h-4"
+              ></i>
+
+            </div>
+
+          </div>
+
+
+
+          <div
+            class="p-6 flex flex-col justify-between flex-grow"
+          >
+
+            <div>
+
+              <div
+                class="flex items-center justify-between mb-2"
+              >
+
+                <h3
+                  class="text-xl font-bold text-black"
+                >
+                  Roku NFT
+                </h3>
+
+
+                <span
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800"
+                >
+                  Non-Affiliated Concept
+                </span>
+
+              </div>
+
+
+              <p
+                class="text-gray-600 text-sm mb-4 leading-relaxed"
+              >
+                An NFT project landing page featuring high-quality graphics
+                and clean visual layouts.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2"
+            >
+
+              View Design & Video
+
+              <i
+                data-lucide="arrow-right"
+                class="w-3.5 h-3.5"
+              ></i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             ROBINHOOD PEPE
+        ========================= -->
+
+        <div
+          data-reveal
+          data-delay="1"
+          onclick="openModal('robinhoodModal')"
+          class="project-card group border border-black/10 rounded-2xl overflow-hidden bg-white flex flex-col cursor-pointer"
+        >
+
+          <div
+            class="relative overflow-hidden aspect-video bg-neutral-100"
+          >
+
+            <img
+              src="robinhood-pepe.jpg"
+              alt="Robinhood Pepe Preview"
+              class="project-image w-full h-full object-cover"
+            >
+
+
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
+            >
+
+              <span>
+                View Case Study
+              </span>
+
+              <i
+                data-lucide="eye"
+                class="w-4 h-4"
+              ></i>
+
+            </div>
+
+          </div>
+
+
+
+          <div
+            class="p-6 flex flex-col justify-between flex-grow"
+          >
+
+            <div>
+
+              <div
+                class="flex items-center justify-between mb-2"
+              >
+
+                <h3
+                  class="text-xl font-bold text-black"
+                >
+                  Robinhood Pepe
+                </h3>
+
+
+                <span
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800"
+                >
+                  Non-Affiliated Concept
+                </span>
+
+              </div>
+
+
+              <p
+                class="text-gray-600 text-sm mb-4 leading-relaxed"
+              >
+                The PEPE of Robinhood Chain memecoin project landing page
+                and concept setup.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2"
+            >
+
+              View Design Breakdown
+
+              <i
+                data-lucide="arrow-right"
+                class="w-3.5 h-3.5"
+              ></i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             RALLY CAT
+        ========================= -->
+
+        <div
+          data-reveal
+          data-delay="2"
+          onclick="openModal('rallycatModal')"
+          class="project-card group border border-black/10 rounded-2xl overflow-hidden bg-white flex flex-col cursor-pointer"
+        >
+
+          <div
+            class="relative overflow-hidden aspect-video bg-neutral-100"
+          >
+
+            <img
+              src="rallycat.jpg"
+              alt="Rally Cat Preview"
+              class="project-image w-full h-full object-cover"
+            >
+
+
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm"
+            >
+
+              <span>
+                View Case Study
+              </span>
+
+              <i
+                data-lucide="eye"
+                class="w-4 h-4"
+              ></i>
+
+            </div>
+
+          </div>
+
+
+
+          <div
+            class="p-6 flex flex-col justify-between flex-grow"
+          >
+
+            <div>
+
+              <div
+                class="flex items-center justify-between mb-2"
+              >
+
+                <h3
+                  class="text-xl font-bold text-black"
+                >
+                  Rally Cat ($RCAT)
+                </h3>
+
+
+                <span
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800"
+                >
+                  Non-Affiliated Concept
+                </span>
+
+              </div>
+
+
+              <p
+                class="text-gray-600 text-sm mb-4 leading-relaxed"
+              >
+                The official token of Crypto Rally memecoin project
+                landing page redesign.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2"
+            >
+
+              View Design Breakdown
+
+              <i
+                data-lucide="arrow-right"
+                class="w-3.5 h-3.5"
+              ></i>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             COMING SOON
+        ========================= -->
+
+        <div
+          data-reveal
+          data-delay="3"
+          class="border border-dashed border-black/20 rounded-2xl p-6 bg-neutral-50/50 flex flex-col justify-center items-center text-center min-h-[320px]"
+        >
+
+          <div
+            class="w-12 h-12 rounded-full bg-neutral-200/60 flex items-center justify-center mb-4 text-gray-400"
+          >
+
+            <i
+              data-lucide="plus"
+              class="w-6 h-6"
+            ></i>
+
+          </div>
+
+
+          <span
+            class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-200 text-gray-600 mb-2"
+          >
+            Coming Soon
+          </span>
+
+
+          <h3
+            class="text-lg font-bold text-gray-400"
+          >
+            Project Slot #6
+          </h3>
+
+
+          <p
+            class="text-xs text-gray-400 mt-2 max-w-[200px]"
+          >
+            Next memecoin build currently in production.
+          </p>
+
         </div>
 
       </div>
 
     </div>
 
-  </div>
   </section>
 
-  <section id="projects" class="py-24 bg-white border-t border-black/5">
-  <div class="max-w-7xl mx-auto px-6">
-    
-    <div class="max-w-xl mb-16">
-      <p class="text-xs uppercase tracking-[6px] text-gray-500 font-semibold mb-3">
-        Portfolio
-      </p>
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900">
-        Selected Memecoin Works
-      </h2>
-    </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      
-      <div class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col">
-        <div class="relative overflow-hidden aspect-video bg-neutral-100">
-          <img src="nan.jpg" alt="$SOBOHBOO Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <a href="https://sobohboo.vercel.app" target="_blank" rel="noopener noreferrer" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
-            <span>Visit Website</span>
-            <i data-lucide="external-link" class="w-4 h-4"></i>
-          </a>
-        </div>
-        
-        <div class="p-6 flex flex-col justify-between flex-grow">
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-xl font-bold text-black">$SOBOHBOO</h3>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800">Live</span>
-            </div>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-              A cute-type memecoin project featuring a friendly design, custom tokenomics, and social hub.
-            </p>
-          </div>
-          
-          <a href="https://sobohboo.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2">
-            sobohboo.vercel.app
-            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-      </div>
 
-      <div class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col">
-        <div class="relative overflow-hidden aspect-video bg-neutral-100">
-          <img src="willofd.jpg" alt="Dawen Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <a href="https://willofd.xyz" target="_blank" rel="noopener noreferrer" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
-            <span>Visit Website</span>
-            <i data-lucide="external-link" class="w-4 h-4"></i>
-          </a>
-        </div>
-        
-        <div class="p-6 flex flex-col justify-between flex-grow">
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-xl font-bold text-black">Dawen</h3>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800">Live</span>
-            </div>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-              A dark cult-type memecoin project website optimized for speed, community growth, and conversion.
-            </p>
-          </div>
-          
-          <a href="https://willofd.xyz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2">
-            willofd.xyz
-            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-      </div>
+  <!-- ========================================
+       ROKU MODAL
+  ======================================== -->
 
-      <div onclick="openModal('rokuModal')" class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col cursor-pointer">
-        <div class="relative overflow-hidden aspect-video bg-neutral-100">
-          <img src="roku-preview.jpg" alt="Roku NFT Preview" class="w-full h-full group-hover:scale-105 transition duration-500">
-          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
-            <span>View Showcase</span>
-            <i data-lucide="eye" class="w-4 h-4"></i>
-          </div>
-        </div>
-        
-        <div class="p-6 flex flex-col justify-between flex-grow">
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-xl font-bold text-black">Roku NFT</h3>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800">Non-Affiliated Concept</span>
-            </div>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-              An NFT project landing page featuring high-quality graphics and clean visual layouts.
-            </p>
-          </div>
-          
-          <button class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2">
-            View Design & Video
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-      </div>
+  <div
+    id="rokuModal"
+    class="modal-bg fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+  >
 
-      <div onclick="openModal('robinhoodModal')" class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col cursor-pointer">
-        <div class="relative overflow-hidden aspect-video bg-neutral-100">
-          <img src="robinhood-pepe.jpg" alt="Robinhood Pepe Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
-            <span>View Case Study</span>
-            <i data-lucide="eye" class="w-4 h-4"></i>
-          </div>
-        </div>
-        
-        <div class="p-6 flex flex-col justify-between flex-grow">
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-xl font-bold text-black">Robinhood Pepe</h3>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800">Non-Affiliated Concept</span>
-            </div>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-              The PEPE of Robinhood Chain memecoin project landing page and concept setup.
-            </p>
-          </div>
-          
-          <button class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2">
-            View Design Breakdown
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-      </div>
+    <div
+      class="modal-content bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl relative border border-black/10"
+    >
 
-      <div onclick="openModal('rallycatModal')" class="group border border-black/10 rounded-2xl overflow-hidden bg-white hover:shadow-xl transition duration-300 flex flex-col cursor-pointer">
-        <div class="relative overflow-hidden aspect-video bg-neutral-100">
-          <img src="rallycat.jpg" alt="Rally Cat Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-medium text-sm">
-            <span>View Case Study</span>
-            <i data-lucide="eye" class="w-4 h-4"></i>
-          </div>
-        </div>
-        
-        <div class="p-6 flex flex-col justify-between flex-grow">
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-xl font-bold text-black">Rally Cat ($RCAT)</h3>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-200 text-neutral-800">Non-Affiliated Concept</span>
-            </div>
-            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
-              The official token of Crypto Rally memecoin project landing page redesign.
-            </p>
-          </div>
-          
-          <button class="inline-flex items-center gap-2 text-xs font-semibold text-black hover:underline mt-2">
-            View Design Breakdown
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-      </div>
+      <button
+        onclick="closeModal('rokuModal')"
+        class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition"
+        aria-label="Close Roku modal"
+      >
 
-      <div class="border border-dashed border-black/20 rounded-2xl p-6 bg-neutral-50/50 flex flex-col justify-center items-center text-center min-h-[320px]">
-        <div class="w-12 h-12 rounded-full bg-neutral-200/60 flex items-center justify-center mb-4 text-gray-400">
-          <i data-lucide="plus" class="w-6 h-6"></i>
-        </div>
-        <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-200 text-gray-600 mb-2">Coming Soon</span>
-        <h3 class="text-lg font-bold text-gray-400">Project Slot #6</h3>
-        <p class="text-xs text-gray-400 mt-2 max-w-[200px]">Next memecoin build currently in production.</p>
-      </div>
+        <i
+          data-lucide="x"
+          class="w-6 h-6"
+        ></i>
 
-    </div>
-
-  </div>
-  </section>
-
-  <div id="rokuModal" class="modal-bg fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl relative border border-black/10">
-      <button onclick="closeModal('rokuModal')" class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition">
-        <i data-lucide="x" class="w-6 h-6"></i>
       </button>
 
+
       <div class="space-y-6">
+
         <div>
-          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800">Non-Affiliated Concept</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-neutral-900 mt-3">Roku NFT</h2>
+
+          <span
+            class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800"
+          >
+            Non-Affiliated Concept
+          </span>
+
+
+          <h2
+            class="text-3xl sm:text-4xl font-extrabold text-neutral-900 mt-3"
+          >
+            Roku NFT
+          </h2>
+
         </div>
+
+
 
         <div class="grid gap-4">
+
           <div class="space-y-2">
-            <h4 class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Video Preview</h4>
-            <div class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-black">
-              <video controls poster="roku-preview.jpg" class="w-full h-full object-cover">
-                <source src="roku-demo.mp4" type="video/mp4">
+
+            <h4
+              class="text-xs uppercase tracking-wider text-gray-500 font-semibold"
+            >
+              Video Preview
+            </h4>
+
+
+            <div
+              class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-black"
+            >
+
+              <video
+                controls
+                poster="roku-preview.jpg"
+                class="w-full h-full object-cover"
+              >
+
+                <source
+                  src="roku-demo.mp4"
+                  type="video/mp4"
+                >
+
                 Your browser does not support the video tag.
+
               </video>
+
             </div>
+
           </div>
+
+
 
           <div class="space-y-2">
-            <h4 class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Image Preview</h4>
-            <div class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-neutral-100">
-              <img src="roku-preview.jpg" alt="Roku NFT Design" class="w-full h-full">
+
+            <h4
+              class="text-xs uppercase tracking-wider text-gray-500 font-semibold"
+            >
+              Image Preview
+            </h4>
+
+
+            <div
+              class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-neutral-100"
+            >
+
+              <img
+                src="roku-preview.jpg"
+                alt="Roku NFT Design"
+                class="w-full h-full object-cover"
+              >
+
             </div>
+
           </div>
+
         </div>
 
-        <div class="space-y-4 text-gray-600 leading-relaxed text-base">
-          <h3 class="text-lg font-bold text-black">Project Overview</h3>
+
+
+        <div
+          class="space-y-4 text-gray-600 leading-relaxed text-base"
+        >
+
+          <h3 class="text-lg font-bold text-black">
+            Project Overview
+          </h3>
+
+
           <p>
-            An NFT project landing page concept designed around high-quality graphics, artwork display, and clean presentation.
+            An NFT project landing page concept designed around
+            high-quality graphics, artwork display, and clean presentation.
           </p>
 
-          <h3 class="text-lg font-bold text-black">Key Highlights</h3>
+
+          <h3 class="text-lg font-bold text-black">
+            Key Highlights
+          </h3>
+
+
           <ul class="list-disc list-inside space-y-1">
-            <li>High-resolution artwork focus and clean visual hierarchy.</li>
-            <li>Simple layout for roadmap and project details.</li>
-            <li>Fully mobile-responsive layout.</li>
+
+            <li>
+              High-resolution artwork focus and clean visual hierarchy.
+            </li>
+
+            <li>
+              Simple layout for roadmap and project details.
+            </li>
+
+            <li>
+              Fully mobile-responsive layout.
+            </li>
+
           </ul>
+
         </div>
 
-        <div class="pt-4 border-t border-black/5 flex justify-end">
-          <button onclick="closeModal('rokuModal')" class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition">
+
+
+        <div
+          class="pt-4 border-t border-black/5 flex justify-end"
+        >
+
+          <button
+            onclick="closeModal('rokuModal')"
+            class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition"
+          >
             Close Overview
           </button>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
 
-  <div id="robinhoodModal" class="modal-bg fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl relative border border-black/10">
-      <button onclick="closeModal('robinhoodModal')" class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition">
-        <i data-lucide="x" class="w-6 h-6"></i>
+
+
+  <!-- ========================================
+       ROBINHOOD PEPE MODAL
+  ======================================== -->
+
+  <div
+    id="robinhoodModal"
+    class="modal-bg fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+  >
+
+    <div
+      class="modal-content bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl relative border border-black/10"
+    >
+
+      <button
+        onclick="closeModal('robinhoodModal')"
+        class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition"
+        aria-label="Close Robinhood Pepe modal"
+      >
+
+        <i
+          data-lucide="x"
+          class="w-6 h-6"
+        ></i>
+
       </button>
 
+
       <div class="space-y-6">
+
         <div>
-          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800">Non-Affiliated Concept</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-neutral-900 mt-3">Robinhood Pepe</h2>
+
+          <span
+            class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800"
+          >
+            Non-Affiliated Concept
+          </span>
+
+
+          <h2
+            class="text-3xl sm:text-4xl font-extrabold text-neutral-900 mt-3"
+          >
+            Robinhood Pepe
+          </h2>
+
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-neutral-100">
-          <img src="robinhood-pepe.jpg" alt="Robinhood Pepe Hero Design" class="w-full h-full object-cover">
+
+
+        <div
+          class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-neutral-100"
+        >
+
+          <img
+            src="robinhood-pepe.jpg"
+            alt="Robinhood Pepe Hero Design"
+            class="w-full h-full object-cover"
+          >
+
         </div>
 
-        <div class="space-y-4 text-gray-600 leading-relaxed text-base">
-          <h3 class="text-lg font-bold text-black">Project Overview</h3>
+
+
+        <div
+          class="space-y-4 text-gray-600 leading-relaxed text-base"
+        >
+
+          <h3 class="text-lg font-bold text-black">
+            Project Overview
+          </h3>
+
+
           <p>
-            The PEPE of Robinhood Chain. A sleek, ultra-fast memecoin project concept matching the custom aesthetic of the brand.
+            The PEPE of Robinhood Chain.
+            A sleek, ultra-fast memecoin project concept matching
+            the custom aesthetic of the brand.
           </p>
 
-          <h3 class="text-lg font-bold text-black">Key Highlights</h3>
+
+          <h3 class="text-lg font-bold text-black">
+            Key Highlights
+          </h3>
+
+
           <ul class="list-disc list-inside space-y-1">
-            <li>Sleek dark theme with forest green accents.</li>
-            <li>Mobile-responsive layout optimized for fast load times.</li>
-            <li>Direct links for DEX charts and community channels.</li>
+
+            <li>
+              Sleek dark theme with forest green accents.
+            </li>
+
+            <li>
+              Mobile-responsive layout optimized for fast load times.
+            </li>
+
+            <li>
+              Direct links for DEX charts and community channels.
+            </li>
+
           </ul>
+
         </div>
 
-        <div class="pt-4 border-t border-black/5 flex justify-end">
-          <button onclick="closeModal('robinhoodModal')" class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition">
+
+
+        <div
+          class="pt-4 border-t border-black/5 flex justify-end"
+        >
+
+          <button
+            onclick="closeModal('robinhoodModal')"
+            class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition"
+          >
             Close Overview
           </button>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
 
-  <div id="rallycatModal" class="modal-bg fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl relative border border-black/10">
-      <button onclick="closeModal('rallycatModal')" class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition">
-        <i data-lucide="x" class="w-6 h-6"></i>
+
+
+  <!-- ========================================
+       RALLY CAT MODAL
+  ======================================== -->
+
+  <div
+    id="rallycatModal"
+    class="modal-bg fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+  >
+
+    <div
+      class="modal-content bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-10 shadow-2xl relative border border-black/10"
+    >
+
+      <button
+        onclick="closeModal('rallycatModal')"
+        class="absolute top-6 right-6 text-gray-400 hover:text-black p-2 bg-neutral-100 rounded-full transition"
+        aria-label="Close Rally Cat modal"
+      >
+
+        <i
+          data-lucide="x"
+          class="w-6 h-6"
+        ></i>
+
       </button>
 
+
       <div class="space-y-6">
+
         <div>
-          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800">Non-Affiliated Concept</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-neutral-900 mt-3">Rally Cat ($RCAT)</h2>
+
+          <span
+            class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-200 text-neutral-800"
+          >
+            Non-Affiliated Concept
+          </span>
+
+
+          <h2
+            class="text-3xl sm:text-4xl font-extrabold text-neutral-900 mt-3"
+          >
+            Rally Cat ($RCAT)
+          </h2>
+
         </div>
 
-        <div class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-neutral-100">
-          <img src="rallycat.jpg" alt="Rally Cat Hero Design" class="w-full h-full object-cover">
+
+
+        <div
+          class="rounded-2xl overflow-hidden border border-black/10 aspect-video bg-neutral-100"
+        >
+
+          <img
+            src="rallycat.jpg"
+            alt="Rally Cat Hero Design"
+            class="w-full h-full object-cover"
+          >
+
         </div>
 
-        <div class="space-y-4 text-gray-600 leading-relaxed text-base">
-          <h3 class="text-lg font-bold text-black">Project Overview</h3>
+
+
+        <div
+          class="space-y-4 text-gray-600 leading-relaxed text-base"
+        >
+
+          <h3 class="text-lg font-bold text-black">
+            Project Overview
+          </h3>
+
+
           <p>
-            The official token of Crypto Rally. Designed as a high-converting, ultra-fast hero section for $RCAT.
+            The official token of Crypto Rally.
+            Designed as a high-converting, ultra-fast hero section for $RCAT.
           </p>
 
-          <h3 class="text-lg font-bold text-black">Key Highlights</h3>
+
+          <h3 class="text-lg font-bold text-black">
+            Key Highlights
+          </h3>
+
+
           <ul class="list-disc list-inside space-y-1">
-            <li>High-contrast theme with bright neon green accents.</li>
-            <li>Optimized CTA structure for instant tokenomics and contract address access.</li>
-            <li>Lightweight performance built for mobile browsers.</li>
+
+            <li>
+              High-contrast theme with bright neon green accents.
+            </li>
+
+            <li>
+              Optimized CTA structure for instant tokenomics
+              and contract address access.
+            </li>
+
+            <li>
+              Lightweight performance built for mobile browsers.
+            </li>
+
           </ul>
+
         </div>
 
-        <div class="pt-4 border-t border-black/5 flex justify-end">
-          <button onclick="closeModal('rallycatModal')" class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition">
+
+
+        <div
+          class="pt-4 border-t border-black/5 flex justify-end"
+        >
+
+          <button
+            onclick="closeModal('rallycatModal')"
+            class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:scale-105 transition"
+          >
             Close Overview
           </button>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
-  
-  <section id="contact" class="py-24 bg-neutral-50 border-t border-black/5">
-  <div class="max-w-7xl mx-auto px-6">
-    
-    <div class="max-w-2xl mx-auto text-center">
-      <p class="text-xs uppercase tracking-[6px] text-gray-500 font-semibold mb-3">
-        Get In Touch
+
+
+
+  <!-- ========================================
+       CONTACT
+  ======================================== -->
+
+  <section
+    id="contact"
+    class="py-24 bg-neutral-50 border-t border-black/5"
+  >
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div
+        class="max-w-2xl mx-auto text-center"
+        data-reveal
+      >
+
+        <p
+          class="text-xs uppercase tracking-[6px] text-gray-500 font-semibold mb-3"
+        >
+          Get In Touch
+        </p>
+
+
+        <h2
+          class="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 mb-6"
+        >
+          Let's build something epic together.
+        </h2>
+
+
+        <p
+          class="text-gray-600 text-base sm:text-lg mb-10 leading-relaxed"
+        >
+          Have a memecoin launch in mind?
+          My inbox and DMs are always open.
+        </p>
+
+
+
+        <!-- Contact Cards -->
+
+        <div
+          class="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto mb-12"
+        >
+
+
+          <!-- Telegram -->
+
+          <a
+            href="https://t.me/IamKenny01"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-reveal
+            data-delay="1"
+            class="p-5 bg-white border border-black/10 rounded-2xl shadow-sm hover:shadow-md hover:border-black/30 transition flex items-center justify-between group"
+          >
+
+            <div class="flex items-center gap-3">
+
+              <div
+                class="p-2.5 bg-neutral-100 rounded-xl group-hover:bg-black group-hover:text-white transition"
+              >
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+
+                  <path d="m22 2-7 20-4-9-9-4Z" />
+
+                  <path d="M22 2 11 13" />
+
+                </svg>
+
+              </div>
+
+
+              <div class="text-left">
+
+                <span
+                  class="block text-xs text-gray-400 font-medium"
+                >
+                  Direct Message
+                </span>
+
+
+                <span
+                  class="text-sm font-bold text-black"
+                >
+                  Telegram
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <i
+              data-lucide="arrow-right"
+              class="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition"
+            ></i>
+
+          </a>
+
+
+
+          <!-- X -->
+
+          <a
+            href="https://x.com/0x_Kenny"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-reveal
+            data-delay="2"
+            class="p-5 bg-white border border-black/10 rounded-2xl shadow-sm hover:shadow-md hover:border-black/30 transition flex items-center justify-between group"
+          >
+
+            <div class="flex items-center gap-3">
+
+              <div
+                class="p-2.5 bg-neutral-100 rounded-xl group-hover:bg-black group-hover:text-white transition"
+              >
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 fill-current"
+                  viewBox="0 0 24 24"
+                >
+
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+
+                </svg>
+
+              </div>
+
+
+              <div class="text-left">
+
+                <span
+                  class="block text-xs text-gray-400 font-medium"
+                >
+                  Follow & DM
+                </span>
+
+
+                <span
+                  class="text-sm font-bold text-black"
+                >
+                  X (Twitter)
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <i
+              data-lucide="arrow-right"
+              class="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition"
+            ></i>
+
+          </a>
+
+        </div>
+
+
+
+        <!-- Email -->
+
+        <div
+          class="inline-flex items-center justify-center"
+          data-reveal
+          data-delay="3"
+        >
+
+          <a
+            href="mailto:kananaya335@gmail.com"
+            class="magnetic-button bg-black text-white px-8 py-4 rounded-full text-sm font-semibold shadow-lg flex items-center gap-2"
+          >
+
+            <i
+              data-lucide="mail"
+              class="w-4 h-4"
+            ></i>
+
+
+            <span>
+              Send an Email
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================
+       FOOTER
+  ======================================== -->
+
+  <footer
+    class="py-8 bg-white border-t border-black/5 text-center"
+  >
+
+    <div
+      class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+    >
+
+      <p class="text-xs text-gray-500">
+        &copy; Ken. All rights reserved.
       </p>
-      
-      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 mb-6">
-        Let's build something epic together.
-      </h2>
-      
-      <p class="text-gray-600 text-base sm:text-lg mb-10 leading-relaxed">
-        Have a memecoin launch in mind? My inbox and DMs are always open.
-      </p>
 
-      <div class="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto mb-12">
-        
-        <a href="https://t.me/IamKenny01" target="_blank" rel="noopener noreferrer" class="p-5 bg-white border border-black/10 rounded-2xl shadow-sm hover:shadow-md hover:border-black/30 transition flex items-center justify-between group">
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 bg-neutral-100 rounded-xl group-hover:bg-black group-hover:text-white transition">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m22 2-7 20-4-9-9-4Z"/>
-                <path d="M22 2 11 13"/>
-              </svg>
-            </div>
-            <div class="text-left">
-              <span class="block text-xs text-gray-400 font-medium">Direct Message</span>
-              <span class="text-sm font-bold text-black">Telegram</span>
-            </div>
-          </div>
-          <i data-lucide="arrow-right" class="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition"></i>
-        </a>
 
-        <a href="https://x.com/0x_Kenny" target="_blank" rel="noopener noreferrer" class="p-5 bg-white border border-black/10 rounded-2xl shadow-sm hover:shadow-md hover:border-black/30 transition flex items-center justify-between group">
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 bg-neutral-100 rounded-xl group-hover:bg-black group-hover:text-white transition">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </div>
-            <div class="text-left">
-              <span class="block text-xs text-gray-400 font-medium">Follow & DM</span>
-              <span class="text-sm font-bold text-black">X (Twitter)</span>
-            </div>
-          </div>
-          <i data-lucide="arrow-right" class="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition"></i>
-        </a>
+      <div
+        class="flex items-center gap-2 text-xs text-gray-400"
+      >
 
-      </div>
+        <span
+          class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+        ></span>
 
-      <div class="inline-flex items-center justify-center">
-        <a href="mailto:kananaya335@gmail.com" class="bg-black text-white px-8 py-4 rounded-full text-sm font-semibold hover:scale-105 transition shadow-lg flex items-center gap-2">
-          <i data-lucide="mail" class="w-4 h-4"></i>
-          <span>Send an Email</span>
-        </a>
+        Available for Memecoin projects
+
       </div>
 
     </div>
 
-  </div>
-</section>
+  </footer>
 
-<footer class="py-8 bg-white border-t border-black/5 text-center">
-  <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="text-xs text-gray-500">
-      &copy; Ken. All rights reserved.
-    </p>
-    <div class="flex items-center gap-2 text-xs text-gray-400">
-      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      Available for Memecoin projects
-    </div>
-  </div>
-</footer>
-  
+
+
+  <!-- ========================================
+       JAVASCRIPT
+  ======================================== -->
+
   <script>
+
+    /* ========================================
+       LUCIDE
+    ======================================== */
+
     lucide.createIcons();
 
+
+
+    /* ========================================
+       MODALS
+    ======================================== */
+
     function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+
+      const modal = document.getElementById(id);
+
+      if (!modal) return;
+
+      modal.classList.remove("hidden");
+
+      document.body.style.overflow = "hidden";
+
     }
+
 
     function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
-      document.body.style.overflow = 'auto';
+
+      const modal = document.getElementById(id);
+
+      if (!modal) return;
+
+      modal.classList.add("hidden");
+
+      document.body.style.overflow = "";
+
     }
 
-    // Close modal on background click
-    window.addEventListener('click', function(e) {
-      if (e.target.classList.contains('modal-bg')) {
-        closeModal(e.target.id);
+
+
+    /* ========================================
+       CLOSE MODAL ON BACKDROP CLICK
+    ======================================== */
+
+    document.addEventListener("click", (event) => {
+
+      if (
+        event.target.classList.contains("modal-bg")
+      ) {
+
+        closeModal(event.target.id);
+
       }
+
     });
+
+
+
+    /* ========================================
+       CLOSE MODAL WITH ESCAPE
+    ======================================== */
+
+    document.addEventListener("keydown", (event) => {
+
+      if (event.key !== "Escape") return;
+
+      const openModals =
+        document.querySelectorAll(
+          ".modal-bg:not(.hidden)"
+        );
+
+      openModals.forEach((modal) => {
+
+        closeModal(modal.id);
+
+      });
+
+    });
+
+
+
+    /* ========================================
+       SCROLL REVEAL
+    ======================================== */
+
+    const revealElements =
+      document.querySelectorAll("[data-reveal]");
+
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach((entry) => {
+
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add(
+              "is-visible"
+            );
+
+            observer.unobserve(entry.target);
+
+          });
+
+        },
+        {
+          threshold: 0.12,
+
+          rootMargin:
+            "0px 0px -60px 0px"
+        }
+      );
+
+
+    revealElements.forEach((element) => {
+
+      revealObserver.observe(element);
+
+    });
+
+
+
+    /* ========================================
+       ACTIVE NAVIGATION
+    ======================================== */
+
+    const sections =
+      document.querySelectorAll(
+        "section[id]"
+      );
+
+
+    const navLinks =
+      document.querySelectorAll(
+        ".nav-link"
+      );
+
+
+    const sectionObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (!entry.isIntersecting) return;
+
+            const currentId =
+              entry.target.id;
+
+
+            navLinks.forEach((link) => {
+
+              const isActive =
+                link.getAttribute("href") ===
+                `#${currentId}`;
+
+
+              link.classList.toggle(
+                "active",
+                isActive
+              );
+
+
+              if (isActive) {
+
+                link.setAttribute(
+                  "aria-current",
+                  "page"
+                );
+
+              } else {
+
+                link.removeAttribute(
+                  "aria-current"
+                );
+
+              }
+
+            });
+
+          });
+
+        },
+        {
+          threshold: 0.25,
+
+          rootMargin:
+            "-20% 0px -55% 0px"
+        }
+      );
+
+
+    sections.forEach((section) => {
+
+      sectionObserver.observe(section);
+
+    });
+
+
+
+    /* ========================================
+       NAV SCROLL EFFECT
+    ======================================== */
+
+    const navShell =
+      document.querySelector(
+        ".nav-shell"
+      );
+
+
+    function updateNavbar() {
+
+      if (!navShell) return;
+
+      if (window.scrollY > 30) {
+
+        navShell.classList.add(
+          "scrolled"
+        );
+
+      } else {
+
+        navShell.classList.remove(
+          "scrolled"
+        );
+
+      }
+
+    }
+
+
+    window.addEventListener(
+      "scroll",
+      updateNavbar,
+      {
+        passive: true
+      }
+    );
+
+
+    updateNavbar();
+
+
+
+    /* ========================================
+       NAV LINK CLICK
+    ======================================== */
+
+    navLinks.forEach((link) => {
+
+      link.addEventListener(
+        "click",
+        () => {
+
+          navLinks.forEach((item) => {
+
+            item.classList.remove(
+              "active"
+            );
+
+          });
+
+
+          link.classList.add(
+            "active"
+          );
+
+        }
+      );
+
+    });
+
+
+
+    /* ========================================
+       PREVENT BODY SCROLL BUG
+       WHEN USING BROWSER BACK/FORWARD
+    ======================================== */
+
+    window.addEventListener(
+      "pageshow",
+      () => {
+
+        const openModal =
+          document.querySelector(
+            ".modal-bg:not(.hidden)"
+          );
+
+        if (!openModal) {
+
+          document.body.style.overflow = "";
+
+        }
+
+      }
+    );
+
   </script>
+
 </body>
+
 </html>
