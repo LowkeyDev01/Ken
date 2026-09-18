@@ -1,10 +1,15 @@
 import { motion } from "framer-motion";
 import ProjectCard from "../components/ProjectCard.jsx";
 
+import onchainLabs from "../assets/OnChainLabs.png";
+import mydoc from "../assets/mydoc.png";
+import roku from "../assets/roku.png";
+import orangu from "../assets/orangu.png";
+
 export default function Project() {
     const projects = [
         {
-            image: "../src/assets/OnChainLabs.png",
+            image: onchainLabs,
             genre: "Web3 / Community",
             title: "OnChain Labs",
             subtext:
@@ -12,7 +17,7 @@ export default function Project() {
             link: "https://theonchainlabs.xyz",
         },
         {
-            image: "../src/assets/mydoc.png",
+            image: mydoc,
             genre: "Health / Mobile (Coming Soon)",
             title: "My Doc",
             subtext:
@@ -20,7 +25,7 @@ export default function Project() {
             link: "https://bit.ly/mydocwaitlist",
         },
         {
-            image: "../src/assets/roku.png",
+            image: roku,
             genre: "NFT / Web3",
             title: "Roku",
             subtext:
@@ -28,7 +33,7 @@ export default function Project() {
             link: "https://x.com/0x__Kenny/status/2093265110718406879?s=20",
         },
         {
-            image: "../src/assets/orangu.png",
+            image: orangu,
             genre: "NFT / Web3",
             title: "Orangu",
             subtext:
