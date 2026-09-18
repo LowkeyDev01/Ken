@@ -1,5 +1,6 @@
-import { GoArrowUpRight } from 'react-icons/go'
+import { GoArrowUpRight, GoDatabase } from 'react-icons/go'
 import image from '../assets/pfp.png'
+import { IoCodeSlashOutline, IoLogoJavascript } from 'react-icons/io5'
 
 export default function Hero(){
     return(
@@ -16,18 +17,25 @@ export default function Hero(){
                 </div>
                 <p className='text-black/50 font-seven text-base mt-2'>I build fast, clean and scalable web experiences that turn ideas into real products.</p>
                 <div className='flex font-seven gap-4 mt-4'>
-                    <a className='text-[0.7em] gap-2 flex items-center bg-black text-white px-5 rounded-3xl py-2'>View my work <GoArrowUpRight /></a>
-                    <a className='text-[0.7em] gap-2 flex items-center border text-blaack px-5 rounded-3xl py-2'>About Me</a>
+                    <a className='text-[0.75em] gap-2 flex items-center bg-black text-white px-5 rounded-3xl py-2'>View my work <GoArrowUpRight /></a>
+                    <a className='text-[0.75em] gap-2 flex items-center border text-blaack px-5 rounded-3xl py-2'>About Me</a>
                 </div>
                 <div className='hidden md:block mt-12'>
                     <div className='flex gap-3 items-center'>
                         <div className='w-1.5 h-1.5 rounded-full bg-green-500'></div>
-                        <p className='text-[0.65em] font-seven text-black/50'>Available for new projects</p>
+                        <p className='text-[0.68em] tracking-widest font-seven text-black/50'>Available for new projects</p>
+                        <div className='h-4 w-[0.05em] ml-2 bg-gray-400'></div>
+                        <div className='flex gap-4'>
+                            <IoCodeSlashOutline />
+                            <IoLogoJavascript />
+                            <GoDatabase />
+
+                        </div>
                     </div>
                 </div>
             </div>
             <div className='flex justify-center items-end'>
-                <img src={image} className='h-[70vh] md:h-[85vh]'></img>
+                <img src={image} className='h-[70vh] md:h-[90vh]'></img>
             </div>
         </div>
     )
