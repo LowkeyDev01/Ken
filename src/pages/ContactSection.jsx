@@ -206,7 +206,7 @@ export default function Contact() {
                             duration: 1,
                             ease: "easeOut",
                         }}
-                        className="absolute bottom-0 h-[55vh] md:h-[90vh] w-auto max-w-none"
+                        className="absolute bottom-0 h-[44vh] md:h-[90vh] w-auto max-w-none"
                     />
                 </motion.div>
             </div>
