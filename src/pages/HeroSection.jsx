@@ -5,7 +5,7 @@ import { IoCodeSlashOutline, IoLogoJavascript } from 'react-icons/io5'
 export default function Hero(){
     return(
         <div className="w-full bg-gray-50 grid grid-row-2 md:grid-cols-2 min-h-screen">
-            <div className='h-[55vh] md:h-screen mb-3 md:mb-0 flex flex-col justify-end md:justify-center md:pl-20 px-5'>
+            <div className='h-[55vh] md:h-screen mb-3 md:mb-0 flex flex-col justify-end md:justify-center md:pl-20 px-3 md:px-5'>
                 <div className='flex gap-2 items-center'>
                     <p className='font-seven text-black/50'>Hi, I'm</p>
                     <div className='w-20 h-[0.05em] bg-black/50'></div>
@@ -35,7 +35,7 @@ export default function Hero(){
                 </div>
             </div>
             <div className='flex justify-center items-end'>
-                <img src={image} className='h-[70vh] md:h-[90vh]'></img>
+                <img src={image} className='h-[50vh] md:h-[90vh]'></img>
             </div>
         </div>
     )
