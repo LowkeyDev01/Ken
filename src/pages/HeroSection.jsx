@@ -66,18 +66,20 @@ export default function Hero() {
                     className="flex font-seven gap-4 mt-4"
                 >
                     <motion.a
+                        href='#projects'
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.97 }}
-                        className="text-[0.75em] gap-2 flex items-center bg-black text-white px-5 rounded-3xl py-2 cursor-pointer"
+                        className="text-[0.75em] scroll-m-22 gap-2 flex items-center bg-black text-white px-5 rounded-3xl py-2 cursor-pointer"
                     >
                         View my work
                         <GoArrowUpRight />
                     </motion.a>
 
                     <motion.a
+                        href='#about'
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.97 }}
-                        className="text-[0.75em] gap-2 flex items-center border text-black px-5 rounded-3xl py-2 cursor-pointer"
+                        className="text-[0.75em] scroll-m-22 gap-2 flex items-center border text-black px-5 rounded-3xl py-2 cursor-pointer"
                     >
                         About Me
                     </motion.a>

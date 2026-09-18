@@ -78,7 +78,7 @@ export default function Navbar() {
                     </button>
                 ))}
 
-                <GiHamburgerMenu className="md:hidden text-3xl mr-2" />
+                {/* <GiHamburgerMenu className="md:hidden text-3xl mr-2" /> */}
             </div>
         </div>
     );
