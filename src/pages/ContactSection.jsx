@@ -20,9 +20,9 @@ export default function Contact() {
         },
         {
             name: "Telegram",
-            username: "@0x__Kenny",
+            username: "@iamken01",
             icon: <FaTelegram size={15} />,
-            href: "https://t.me/0x__Kenny",
+            href: "https://t.me/iamken01",
         },
         {
             name: "Email",
@@ -290,7 +290,7 @@ export default function Contact() {
                         </a>
 
                         <a
-                            href="https://t.me/0x__Kenny"
+                            href="https://t.me/iamken01"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-black/50 hover:text-black transition-colors"
